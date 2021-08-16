@@ -1,47 +1,97 @@
 <template>
-<div>
-  <div>
-    <h5>Titulo</h5>
-    <input v-model="form.titulo" />
-  </div>
-  <div>
-    <h5>Ano de lançamento</h5>
-    <input v-model.number="form.ano_lancamento" />
-  </div>
-  <div>
-    <h5>editora</h5>
-    <input v-model="form.editora" />
-  </div>
-  <div>
-    <h5>Genero</h5>
-    <input v-model="form.genero" />
-  </div>
-  <div>
-    <h5>Autor</h5>
-    <input v-model="form.autor" />
-  </div>
-  <div>
+<div class="container" >
 
-    <button v-if="button" @click="createLivros" >
-      Botão
-    </button>
-    
-    <button v-if="!button" @click="updateLivros" >
-      Atualizar
-    </button>
+    <h2> Cadastro de Livros</h2>
+    <b-form style="width: 80vw">
+      <b-form-group
+
+      >
+        <b-form-input
+          id="input-1"
+          v-model="form.titulo"
+          type="email"
+          placeholder="Titulo"
+          required
+        ></b-form-input>
+      </b-form-group>
+
+      <b-form-group>
+        <b-form-input
+          id="input-2"
+          v-model="form.ano_lancamento"
+          placeholder="Ano de lançamento"
+          required
+        ></b-form-input>
+      </b-form-group>
+        
+        <b-form-group >
+        <b-form-input
+          id="input-2"
+          v-model="form.editora"
+          placeholder="Editora"
+          required
+        ></b-form-input>
+        </b-form-group>
+
+        <b-form-group>
+        <b-form-input
+          id="input-2"
+          v-model="form.genero"
+          placeholder="Genero"
+          required
+        ></b-form-input>
+        </b-form-group>
+
+        <b-form-group >
+        <b-form-input
+          id="input-2"
+          v-model="form.autor"
+          placeholder="Autor"
+          required
+        ></b-form-input>
+      </b-form-group>
+
+      <center>      <b-button v-if="button" type="submit" variant="primary"   @click.prevent="createLivros">Cadastrar</b-button>
+      <b-button v-if="!button" type="submit" class="" variant="primary" @click.prevent="updateLivros">Atualizar</b-button>
+</center>
+
+
+        </b-form>
+        <b-card class="mt-3" style="width: 80vw" header="Lista de Livros">
+      <table v-for="(livro, index) in livros" :key="index">
+        <thead>
+          <tr>
+              <th style="min-width:150px">Titulo</th>
+              <th style="min-width:30px">Ano de lançamento</th>
+              <th style="min-width:150px">Editora</th>
+              <th style="min-width:150px">Genero</th>
+              <th style="min-width:150px">Autor</th>
+              
+              <th >Ação</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>{{livro.titulo}}</td>
+            <td>{{livro.ano_lancamento}}</td>
+            <td>{{livro.editora}}</td>
+            <td>{{livro.genero}}</td>
+            <td>{{livro.autor}}</td>
+            <td>    
+              <b-button-group>
+              <b-button @click="editar(livro)" variant="success" style="margin-right:10px">Editar</b-button>
+              <b-button @click="deleteLivros(livro.id)" variant="danger">Excluir</b-button>
+
+  
+    </b-button-group></td>
+ </tr>
+  
+        </tbody>
+      </table>
+            
+    </b-card>
   </div>
-  <div>
-   <div v-for="(livro, index) in livros" :key="index">
-     <h5>{{livro.titulo}}</h5>
-     <h5>{{livro.ano_lancamento}}</h5>
-     <h5>{{livro.editora}}</h5>
-     <h5>{{livro.genero}}</h5>
-     <h5>{{livro.autor}}</h5>
-     <button @click="deleteLivros(livro.id)" > Excluir </button>
-     <button @click="editar(livro)"> Editar </button>
-   </div>
-  </div>
-</div>
 </template>
 <script>
 import apiLib from "../../services/config"

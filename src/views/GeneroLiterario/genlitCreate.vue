@@ -1,34 +1,64 @@
 <template>
-<div>
-  <div>
-    <h5>Nome</h5>
-    <input v-model="form.nome" />
-  </div>
-  <div>
-    <h5>Descrição</h5>
-    <input v-model="form.descricao" />
-  </div>
-  <div>
+  <div class="container" >
 
-    <button v-if="button" @click="createGeneros" >
-      Botão
-    </button>
-    
-    <button v-if="!button" @click="updateGeneros" >
-      Atualizar
-    </button>
+    <h2> Cadastro de Genero Literario</h2>
+    <b-form style="width: 80vw">
+      <b-form-group
 
-    <pre>{{idGenero}}</pre>
+      >
+        <b-form-input
+          id="input-1"
+          v-model="form.nome"
+          type="email"
+          placeholder="Nome"
+          required
+        ></b-form-input>
+      </b-form-group>
+
+      <b-form-group >
+        <b-form-input
+          id="input-2"
+          v-model="form.descricao"
+          placeholder="Descrição"
+          required
+        ></b-form-input>
+      </b-form-group>
+
+      <center>      <b-button v-if="button" type="submit" variant="primary"   @click.prevent="createGeneros">Cadastrar</b-button>
+      <b-button v-if="!button" type="submit" class="" variant="primary" @click.prevent="updateGeneros">Atualizar</b-button>
+</center>
+
+      
+    </b-form>
+    <b-card class="mt-3" style="width: 80vw" header="Lista de Generos">
+      <table v-for="(genero, index) in generos" :key="index">
+        <thead>
+          <tr>
+              <th style="min-width:500px">Nome</th>
+              <th style="min-width:500px">Descrição</th>
+              <th >Ação</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>{{genero.nome}}</td>
+            <td>{{genero.descricao}}</td>
+            <td>    
+              <b-button-group>
+              <b-button @click="editar(genero)" variant="success" style="margin-right:10px">Editar</b-button>
+              <b-button @click="deleteGeneros(genero.id)" variant="danger">Excluir</b-button>
+
+  
+    </b-button-group></td>
+         
+          </tr>
+  
+        </tbody>
+      </table>
+            
+    </b-card>
   </div>
-  <div>
-   <div v-for="(genero, index) in generos" :key="index">
-     <h5>{{genero.nome}}</h5>
-     <h5>{{genero.descricao}}</h5>
-     <button @click="deleteGeneros(genero.id)" > Excluir </button>
-     <button @click="editar(genero)"> Editar </button>
-   </div>
-  </div>
-</div>
 </template>
 <script>
 import apiLib from "../../services/config"
@@ -38,6 +68,7 @@ export default {
 
   data(){
  return {
+  
        form:{
            nome:"",
            descricao: "",

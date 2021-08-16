@@ -1,5 +1,5 @@
 <template>
     <div>
-        <p>Bem vindo</p>
+        <p>index</p>
     </div>
 </template>
