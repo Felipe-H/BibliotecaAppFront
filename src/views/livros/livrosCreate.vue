@@ -18,7 +18,8 @@
       <b-form-group>
         <b-form-input
           id="input-2"
-          v-model="form.ano_lancamento"
+            type="number"
+          v-model.number="form.ano_lancamento"
           placeholder="Ano de lançamento"
           required
         ></b-form-input>
@@ -61,11 +62,11 @@
       <table v-for="(livro, index) in livros" :key="index">
         <thead>
           <tr>
-              <th style="min-width:150px">Titulo</th>
-              <th style="min-width:30px">Ano de lançamento</th>
-              <th style="min-width:150px">Editora</th>
-              <th style="min-width:150px">Genero</th>
-              <th style="min-width:150px">Autor</th>
+              <th style="min-width:200px; max-width:200px ">Titulo</th>
+              <th style="min-width:150px; max-width:150px ">Ano de lançamento</th>
+              <th style="min-width:150px; max-width:150px ">Editora</th>
+              <th style="min-width:150px; max-width:150px ">Genero</th>
+              <th style="min-width:150px; max-width:150px ">Autor</th>
               
               <th >Ação</th>
           </tr>
