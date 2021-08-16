@@ -1,4 +1,4 @@
-<template>
+<template> 
 <div class="container" >
 
     <h2> Cadastro de Autores</h2>
