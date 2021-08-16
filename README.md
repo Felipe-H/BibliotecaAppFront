@@ -1,6 +1,16 @@
-# bibliapp
+# biblioteca APP
+## Tecnologias utilizadas no projeto:
+```
+VueJS, VueBootstrap, Materialize, Axios
+```
 
-## Project setup
+```
+O App se conectou a API através da base URL encontrada no arquivo config.js.
+```
+
+
+
+## Para instação dos pacotes do projeto
 ```
 npm install
 ```
